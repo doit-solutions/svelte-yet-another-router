@@ -20,7 +20,7 @@
         .filter(p => p.startsWith('data-'))
         .reduce((c, p) => { c[p] = $$restProps[p]; return c; }, {});
 
-    $: completeHref = href.startsWith('/') ? `${$pathBase}{href}` : href;
+    $: completeHref = href.startsWith('/') ? `${$pathBase}${href}` : href;
     $: cls = (exact && $location.pathname === href) || (!exact && $location.pathname.indexOf(href) === 0) ? $activeClassName : '';
 
     function handleClick(e) {
