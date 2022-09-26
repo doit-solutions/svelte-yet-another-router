@@ -1,0 +1,14 @@
+{
+    "name": "svelte-yet-another-router-sample",
+    "private": true,
+    "license": "MIT",
+    "devDependencies": {
+        "parcel": "2.7.0",
+        "parcel-transformer-svelte3-plus": "0.2.8",
+        "svelte": "^3",
+        "svelte-yet-another-router": "file:.."
+    },
+    "scripts": {
+        "serve": "npx parcel ./src/index.html"
+    }
+}

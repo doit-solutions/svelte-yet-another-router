@@ -1,0 +1,9 @@
+{
+    "name": "svelte-yet-another-router",
+    "dockerFile": "../Dockerfile",
+    "extensions": [ "svelte.svelte-vscode" ],
+    "mounts": [
+        "source=svelte-yet-another-router-sample-node-modules,target=${containerWorkspaceFolder}/sample/node_modules,type=volume",
+        "source=svelte-yet-another-router-sample-parcel-cache,target=${containerWorkspaceFolder}/sample/.cache,type=volume"
+    ]
+}
