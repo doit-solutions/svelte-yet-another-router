@@ -3,6 +3,7 @@
 ## Getting started
 This Svelte router has a simple API with a total of only five components. The two most important ones are the `Route` and the `Link` components. The purpose of the `Route` component is to conditionally render its children based on the current location. The purpose of the `Link` component is to provide clickable links which doesn't reload the entire page from the server but instead casues Svelte to update the application and it's `Route` components based on the `Link`'s target.
 
+```html
     <script>
         import { Link, Route, Switch, pathBase, push } from 'svelte-yet-another-router';
 
@@ -32,6 +33,7 @@ This Svelte router has a simple API with a total of only five components. The tw
             <p>404: Unknown page!</p>
         </Route>
     </Switch>
+```
 
 Additionally, the `Redirect` and `ExternalRedirect` components are available, which will redirect the user to the provided target whenever it is rendered. The difference is that the `Redirect` component will only redirect within the same application by triggering Svelte to update the rendering while `ExternalRedirect` will simply change the browser's location to whichever URL is provided.
 
