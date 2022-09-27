@@ -35,11 +35,10 @@
 </script>
 
 <script>
-    import { getContext, onMount, setContext, createEventDispatcher } from 'svelte';
+    import { getContext, setContext, createEventDispatcher } from 'svelte';
     import { Path } from 'path-parser';
 
     import { ContextKey } from './Switch.svelte';
-    import { subscribe } from 'svelte/internal';
 
     const dispatch = createEventDispatcher();
 
@@ -51,7 +50,8 @@
 
     const switched = getContext(ContextKey);
 
-    $: completePath = `${$pathBase}${path.startsWith('/') ? path : `/${path}`}`;
+    $: tempPath = `${$pathBase}${path.startsWith('/') ? path : `/${path}`}`;
+    $: completePath = !tempPath.endsWith('/') ? tempPath : tempPath.substring(0, tempPath.length - 1);
     $: pathname = !$location.pathname.endsWith('/') ? $location.pathname : $location.pathname.substring(0, $location.pathname.length - 1);
     $: p = Path.createPath(completePath);
     $: match = exact ? p.test(pathname || '/') : p.partialTest(pathname || '/');
