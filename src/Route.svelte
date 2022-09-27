@@ -53,7 +53,7 @@
     $: tempPath = `${$pathBase}${path.startsWith('/') ? path : `/${path}`}`;
     $: completePath = !tempPath.endsWith('/') ? tempPath : tempPath.substring(0, tempPath.length - 1);
     $: pathname = !$location.pathname.endsWith('/') ? $location.pathname : $location.pathname.substring(0, $location.pathname.length - 1);
-    $: p = Path.createPath(completePath);
+    $: p = Path.createPath(completePath || '/');
     $: match = exact ? p.test(pathname || '/') : p.partialTest(pathname || '/');
     $: render = match !== null && (!switched || $switched === undefined || $switched === id);
     $: queryParams = {};
