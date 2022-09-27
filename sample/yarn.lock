@@ -1346,7 +1346,7 @@ supports-color@^7.1.0:
     has-flag "^4.0.0"
 
 "svelte-yet-another-router@file:..":
-  version "1.6.4"
+  version "1.6.5"
   dependencies:
     path-parser "^6"
     svelte "^3"

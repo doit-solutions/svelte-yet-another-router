@@ -1,10 +1,14 @@
 {
     "name": "svelte-yet-another-router",
-    "version": "1.6.4",
+    "version": "1.6.5",
     "license": "MIT",
     "author": {
         "name": "David Nordvall",
         "email": "david.nordvall@doitsolutions.se"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/doit-solutions/svelte-yet-another-router"
     },
     "main": "./index.js",
     "keywords": [

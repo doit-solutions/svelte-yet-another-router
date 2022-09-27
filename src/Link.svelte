@@ -21,8 +21,8 @@
         .reduce((c, p) => { c[p] = $$restProps[p]; return c; }, {});
 
     $: tempHref = href.startsWith('/') ? `${$pathBase}${href}` : href;
-    $: completeHref = !tempHref.endsWith('/') ? tempHref : tempHref.substring(0, tempHref.length - 1);
-    $: pathname = !$location.pathname.endsWith('/') ? $location.pathname : $location.pathname.substring(0, $location.pathname.length - 1);
+    $: completeHref = (!tempHref.endsWith('/') ? tempHref : tempHref.substring(0, tempHref.length - 1)) || '/';
+    $: pathname = (!$location.pathname.endsWith('/') ? $location.pathname : $location.pathname.substring(0, $location.pathname.length - 1)) || '/';
     $: cls = (exact && pathname === completeHref) || (!exact && pathname.indexOf(completeHref) === 0) ? $activeClassName : '';
 
     function handleClick(e) {
