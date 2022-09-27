@@ -20,8 +20,10 @@
         .filter(p => p.startsWith('data-'))
         .reduce((c, p) => { c[p] = $$restProps[p]; return c; }, {});
 
-    $: completeHref = href.startsWith('/') ? `${$pathBase}${href}` : href;
-    $: cls = (exact && $location.pathname === href) || (!exact && $location.pathname.indexOf(href) === 0) ? $activeClassName : '';
+    $: tempHref = href.startsWith('/') ? `${$pathBase}${href}` : href;
+    $: completeHref = !tempHref.endsWith('/') ? tempHref : tempHref.substring(0, tempHref.length - 1);
+    $: pathname = !$location.pathname.endsWith('/') ? $location.pathname : $location.pathname.substring(0, $location.pathname.length - 1);
+    $: cls = (exact && pathname === completeHref) || (!exact && pathname.indexOf(completeHref) === 0) ? $activeClassName : '';
 
     function handleClick(e) {
         if (!$forceReload) {
