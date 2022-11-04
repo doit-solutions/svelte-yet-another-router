@@ -2,7 +2,7 @@
     import { readable, writable, get } from 'svelte/store';
 
     export const pathBase = (() => {
-        const { subscribe, set } = writable('/');
+        const { subscribe, set } = writable('');
         return {
             set: pathBase => {
                 if (!pathBase.startsWith('/')) {
