@@ -39,3 +39,27 @@ Additionally, the `Redirect` and `ExternalRedirect` components are available, wh
 
 Finally, a `Switch` component is available. Among the first level of `Route` components contained within a `Switch` component, only the first one with a matching path is
 rendered. This, among other things, allows for the construction of "catch all" routes for handling unknown paths.
+
+## Upgrade from version 1 to 2
+The only breaking change when upgrading from version 1 to 2 is the handling of active links. In version one, this was managed through the store `$activeClassName`, through which you could set which CSS class would be applied to an active `<Link />` (i.e. a link component which points to the currently active URL).
+
+In version 2, management of active links is more powerful. Not only can you set which attribute value to use but also the attribute _name_ (i.e., you're not restricted to only set the `class` attribute).
+
+You could, for example, do something like:
+
+```html
+<script>
+    import { activePropName, activePropValue } from 'svelte-yet-another-router';
+
+    $activePropName = 'aria-current';
+    $activePropValue = 'page';
+</script>
+
+<Link href="/test">Go to the test</Link>
+```
+
+which would render to
+
+```html
+<a aria-current="page" href="/test">Go to the test</a>
+```

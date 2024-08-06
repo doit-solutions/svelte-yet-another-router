@@ -1,5 +1,5 @@
 <script>
-    import { push } from './Route.svelte';
+    import { push } from "./Route.svelte";
 
     export let to;
     $push(to);
