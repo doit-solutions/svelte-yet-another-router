@@ -1,4 +1,4 @@
-# svelte-yet-another-router
+# `svelte-yet-another-router`
 
 ## Getting started
 This Svelte router has a simple API with a total of only five components. The two most important ones are the `Route` and the `Link` components. The purpose of the `Route` component is to conditionally render its children based on the current location. The purpose of the `Link` component is to provide clickable links which doesn't reload the entire page from the server but instead casues Svelte to update the application and it's `Route` components based on the `Link`'s target.
