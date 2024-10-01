@@ -1,7 +1,7 @@
-.git/
-**/node_modules/
-**/.parcel-cache/
-**/.devcontainer/
-**/sample/
+.git
+node_modules
+.parcel-cache
+.devcontainer
+sample
 Dockerfile
 .dockerignore
