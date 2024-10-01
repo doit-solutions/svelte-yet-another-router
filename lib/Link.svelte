@@ -9,7 +9,7 @@
 </script>
 
 <script>
-    import { location, push } from "./Route.svelte";
+    import { location } from "./Route.svelte";
 
     export let href;
     export let exact = true;
@@ -50,7 +50,7 @@
     function handleClick(e) {
         if (!$forceReload) {
             e.preventDefault();
-            $push(href);
+            location.push(href);
         }
     }
 </script>

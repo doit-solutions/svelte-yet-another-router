@@ -1,5 +1,5 @@
 <script>
-    import { Redirect } from "svelte-yet-another-router";
+    import { Redirect, location } from "svelte-yet-another-router";
 
     export let id;
 

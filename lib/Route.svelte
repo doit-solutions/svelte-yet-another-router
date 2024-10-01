@@ -1,5 +1,5 @@
 <script context="module">
-    import { readable, writable, get } from "svelte/store";
+    import { writable, get } from "svelte/store";
 
     export const pathBase = (() => {
         const { subscribe, set } = writable("");
@@ -17,25 +17,23 @@
         };
     })();
 
-    let locationSetter = null;
-    export const location = readable(window.location, (set) => {
-        locationSetter = set;
-        let eventListener = (e) => {
-            set(window.location);
+    export const location = (() => {
+        const { subscribe, set } = writable(window.location, () => {
+            const eventListener = (e) => set(window.location);
+            window.addEventListener("popstate", eventListener);
+            return () => window.removeEventListener("popstate", eventListener);
+        });
+        return {
+            subscribe,
+            push: (href, state = null) => {
+                const completeHref = href.startsWith("/")
+                    ? `${get(pathBase)}${href}`
+                    : href;
+                window.history.pushState(state, null, completeHref);
+                set(window.location);
+            },
         };
-        window.addEventListener("popstate", eventListener);
-        return () => window.removeEventListener("popstate", eventListener);
-    });
-    export const push = readable(
-        function (href, state = null) {
-            const completeHref = href.startsWith("/")
-                ? `${get(pathBase)}${href}`
-                : href;
-            window.history.pushState(state, null, completeHref);
-            locationSetter(window.location);
-        },
-        (set) => {},
-    );
+    })();
     let count = 0;
 </script>
 

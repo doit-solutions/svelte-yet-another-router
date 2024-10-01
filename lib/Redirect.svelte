@@ -1,6 +1,6 @@
 <script>
-    import { push } from "./Route.svelte";
+    import { location } from "./Route.svelte";
 
     export let to;
-    $push(to);
+    location.push(to);
 </script>

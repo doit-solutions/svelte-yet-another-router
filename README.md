@@ -5,7 +5,7 @@ This Svelte router has a simple API with a total of only five components. The tw
 
 ```html
     <script>
-        import { Link, Route, Switch, pathBase, push } from 'svelte-yet-another-router';
+        import { Link, Route, Switch, pathBase, location } from 'svelte-yet-another-router';
 
         // If your app is published in a subfolder, you can set the path base to make all
         // <Route>s, <Link>s and <Redirect>s automatically work with you path base.
@@ -26,7 +26,7 @@ This Svelte router has a simple API with a total of only five components. The tw
             <p>Yet another page!</p>
         </Route>
         <!-- The $push store allows you to push a URI (and corresponding state to the browser history -->
-        <Route path="/page3" on:match={() => $push('/')}>
+        <Route path="/page3" on:match={() => location.push('/')}>
             <p>Going home!</p>
         </Route>
         <Route path="/" exact={false}>
@@ -40,8 +40,9 @@ Additionally, the `Redirect` and `ExternalRedirect` components are available, wh
 Finally, a `Switch` component is available. Among the first level of `Route` components contained within a `Switch` component, only the first one with a matching path is
 rendered. This, among other things, allows for the construction of "catch all" routes for handling unknown paths.
 
-## Upgrade from version 1 to 2
-The only breaking change when upgrading from version 1 to 2 is the handling of active links. In version one, this was managed through the store `$activeClassName`, through which you could set which CSS class would be applied to an active `<Link />` (i.e. a link component which points to the currently active URL).
+## Breaking changes from version 1 to 2
+### `$activeClassName` is no longer available
+In version 1, handling af active links was managed through the store `$activeClassName`, through which you could set which CSS class would be applied to an active `<Link />` (i.e. a link component which points to the currently active URL).
 
 In version 2, management of active links is more powerful. Not only can you set which attribute value to use but also the attribute _name_ (i.e., you're not restricted to only set the `class` attribute).
 
@@ -63,3 +64,8 @@ which would render to
 ```html
 <a aria-current="page" href="/test">Go to the test</a>
 ```
+
+### `$push` is no longer available
+In version 1, it was possible to push a new URL on the browser's history by using the `push` store, simply by calling `$push('new-url')` from your Svelte component.
+
+In version 2, this functionality has been merged into the `location` store. Pushing a new URL to the browser history is now done by calling `location.push('new-url')` from your Svelte component.
