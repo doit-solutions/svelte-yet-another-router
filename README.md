@@ -14,9 +14,12 @@ This Svelte router has a simple API with a total of only five components. The tw
 
     <h1>My app!</h1>
     <Route path="/">
-        <p>This is the home page. Why don't you visit <Link href="/page1">another page</Link>? Or <Link href="page2">yet another</Link>?
-
-        <Link href="/page3">This link</Link> will take you right back to the start.
+        <p>
+            This is the home page. Why don't you visit <Link href="/page1">another page</Link>? Or <Link href="page2">yet another</Link>?
+        </p>
+        <p>
+            <Link href="/page3">This link</Link> will take you right back to the start.
+        </p>
     </Route>
     <Switch>
         <Route path="/page1">
@@ -25,7 +28,10 @@ This Svelte router has a simple API with a total of only five components. The tw
         <Route path="/page2">
             <p>Yet another page!</p>
         </Route>
-        <!-- The $push store allows you to push a URI (and corresponding state to the browser history -->
+        <!--
+            The location store allows you to read the current location (URI) _and_ push a
+            new URI (and corresponding state to the browser history).
+        -->
         <Route path="/page3" on:match={() => location.push('/')}>
             <p>Going home!</p>
         </Route>
