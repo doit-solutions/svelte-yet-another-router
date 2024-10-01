@@ -1,9 +1,16 @@
 {
     "name": "svelte-yet-another-router",
-    "dockerFile": "../Dockerfile",
-    "extensions": [ "svelte.svelte-vscode" ],
-    "mounts": [
-        "source=svelte-yet-another-router-sample-node-modules,target=${containerWorkspaceFolder}/sample/node_modules,type=volume",
-        "source=svelte-yet-another-router-sample-parcel-cache,target=${containerWorkspaceFolder}/sample/.cache,type=volume"
-    ]
+    "image": "mcr.microsoft.com/devcontainers/typescript-node:22",
+    "features": {},
+    "customizations": {
+        "vscode": {
+            "extensions": [
+                "EditorConfig.EditorConfig",
+                "svelte.svelte-vscode"
+            ],
+            "settings": {
+                "editor.formatOnSave": true
+            }
+        }
+    }
 }

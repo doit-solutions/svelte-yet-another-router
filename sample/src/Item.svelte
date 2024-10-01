@@ -1,5 +1,5 @@
 <script>
-    import { Redirect } from 'svelte-yet-another-router';
+    import { Redirect, location } from "svelte-yet-another-router";
 
     export let id;
 
@@ -15,14 +15,16 @@
     }
 </script>
 
-<h3>Item {id}</h3>
+<h2>Item {id}</h2>
 <p>This is the item with id {id}.</p>
 {#if !done}
-    {#if !processing}
-        <button on:click={onProcessClick}>Process item</button>
-    {:else}
-        <p>Processing...</p>
-    {/if}
+    <button
+        on:click={onProcessClick}
+        disabled={processing}
+        aria-busy={processing}
+    >
+        Process item
+    </button>
 {:else}
     <Redirect to="/" />
 {/if}

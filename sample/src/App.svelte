@@ -1,29 +1,45 @@
 <script>
-    import { Route, pathBase } from 'svelte-yet-another-router';
+    import "./App.scss";
 
-    import Menu from './Menu.svelte';
-    import Item from './Item.svelte';
-    import About from './About.svelte';
+    import {
+        activePropName,
+        activePropValue,
+        Route,
+        pathBase,
+    } from "svelte-yet-another-router";
 
-    pathBase.set('/');
+    import Menu from "./Menu.svelte";
+    import Item from "./Item.svelte";
+    import About from "./About.svelte";
+
+    $pathBase = "/";
+    $activePropName = "aria-current";
+    $activePropValue = "page";
 </script>
 
-<style>
-    :global(html) {
-        font-family: sans-serif;
-    }
-</style>
-
-<h1>Yet another Svelte router</h1>
-
 <Menu />
+<main class="container">
+    <hgroup>
+        <h1>Yet another Svelte router</h1>
+        <p>Now with Svelte 4 support</p>
+    </hgroup>
 
-<Route path="/">
-    <p>Welcome to the home screen!</p>
-</Route>
-<Route path="/items/:id" let:params on:match={e => console.log({ params: e.detail })}>
-    <Item {...params} />
-</Route>
-<Route path="/about/">
-    <About />
-</Route>
+    <Route path="/">
+        <p>Welcome to the home screen!</p>
+        <p>
+            Svelte 4 support is great when it arrives just in time for the
+            Svelte 5 release 👍. And don't forget that Svelte 3 is still
+            supported!
+        </p>
+    </Route>
+    <Route
+        path="/items/:id"
+        let:params
+        on:match={({ detail }) => console.log({ params: detail })}
+    >
+        <Item {...params} />
+    </Route>
+    <Route path="/about/">
+        <About />
+    </Route>
+</main>
