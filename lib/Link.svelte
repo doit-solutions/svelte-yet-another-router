@@ -42,10 +42,14 @@
         (!exact && pathname.indexOf(completeHref) === 0)
             ? [$activePropName].reduce((c, p) => {
                   let c2 = { ...c };
-                  c2[p] = `${$activePropValue} ${className}`.trimEnd();
+                  c2[p] = $activePropValue;
                   return c2;
               }, {})
             : {};
+    $: if ($activePropName === "class" && (className || "").trim().length > 0) {
+        className = `${activeProps[$activePropName] || ""} ${className}`.trim();
+        activeProps = {};
+    }
 
     function handleClick(e) {
         if (!$forceReload) {
